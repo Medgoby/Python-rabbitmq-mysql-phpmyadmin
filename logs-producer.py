@@ -32,5 +32,3 @@ with open('assets/web-server-nginx.log') as log_file:
         channel.basic_publish(exchange=EXCHANGE_NAME, routing_key=queue['routing_key'], body=line.encode('utf-8'))
 
         print(f"[x] published event `{line}` in topic `{queue['routing_key']}`")
-        #print("Sent log line:", line.strip())
-

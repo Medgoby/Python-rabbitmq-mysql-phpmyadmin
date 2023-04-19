@@ -1,12 +1,14 @@
+import hashlib
+import re
 
+#chan: BlockingChannel, method: Basic.Deliver, properties: BasicProperties,
 
 class ProcessMsgDataLake():
 
     regex = re.compile(r"(?P<session>\S{1}|\S{15}) (?P<user>\S{1,50})")
     
-
-    def __init__(self,chan: BlockingChannel, method: Basic.Deliver, properties: BasicProperties, body):
-        self.body=body.decode("utf-8")
+    def __init__(self, body:str):
+        self.body=body #.decode("utf-8")
 
     def get_log(self):
         return self.body
