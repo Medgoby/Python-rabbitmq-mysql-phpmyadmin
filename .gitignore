@@ -105,7 +105,7 @@ celerybeat.pid
 my_env/
 .my_env
 *.my_env
-#.env
+.env
 .venv
 env/
 venv/

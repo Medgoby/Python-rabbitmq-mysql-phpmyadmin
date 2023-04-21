@@ -21,10 +21,7 @@ from src.log_clean import Log_clean
 from src.row_log import Log_lake
 from transformations import UserTransformation, UrlTransformation, SizeTransformation,StatusCodeTransformation
 
-
-
 connexion = CreateEngine()
-
 
 def process_msg_clean(chan: BlockingChannel, method: Basic.Deliver, properties: BasicProperties, body):
     
@@ -38,8 +35,6 @@ def process_msg_clean(chan: BlockingChannel, method: Basic.Deliver, properties: 
        log_clean.rest_version(log)
        log_clean.get_location(log)
 
-
-
        log_clean = StatusCodeTransformation().transform(log_clean)
        log_clean = UserTransformation().transform(log_clean)
        log_clean=UrlTransformation().get_schema_host_from_url(log_clean)
@@ -52,9 +47,9 @@ def process_msg_clean(chan: BlockingChannel, method: Basic.Deliver, properties: 
                            email_domain=log_clean.domain,rest_method=log_clean.method)
        c_instance = connexion.query(CleanLog).filter_by(id=RowClean.id).one_or_none()
        if not c_instance:
-                connexion.add(RowClean)
-                connexion.commit()
-                print(f"consuming --> {log}")
+        connexion.add(RowClean)
+        connexion.commit()
+        print(f"consuming --> {log}")
 
 channel.basic_consume(queue="queue-data-clean",
                       on_message_callback=process_msg_clean, auto_ack=True,consumer_tag="consumer-data-clean")
