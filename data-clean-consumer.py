@@ -14,12 +14,12 @@ from pika.spec import BasicProperties
 from server import channel
 
 
-from models import Base, CleanLog, RowLog
+from src.models import Base, CleanLog, RowLog
 from main import CreateEngine
 
 from src.log_clean import Log_clean
 from src.row_log import Log_lake
-from transformations import UserTransformation, UrlTransformation, SizeTransformation,StatusCodeTransformation
+from src.transformations import UserTransformation, UrlTransformation, SizeTransformation,StatusCodeTransformation
 
 connexion = CreateEngine()
 

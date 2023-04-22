@@ -9,7 +9,7 @@ from src import utils
 from src.row_log import Log_lake
 
 
-from models import RowLog
+from src.models import RowLog
 from main import CreateEngine
 
 
